@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "236136326896",
+    "project_id": "mental-wellness-app-77f5e",
+    "storage_bucket": "mental-wellness-app-77f5e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236136326896:android:1729c83fa9522b0dbac435",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236136326896-8kqj0klr745f3bqg72ed5mf46l65kogc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_application_1",
+            "certificate_hash": "0e8ed7673378c964342d670f0fa41dd5ca029e6d"
+          }
+        },
+        {
+          "client_id": "236136326896-mup1vu9agac9gkd0h7kh9pghg0cqmmcg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOlwf3gb6enVxajNYPaSkp4VWjLYpdnQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236136326896-mup1vu9agac9gkd0h7kh9pghg0cqmmcg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "236136326896-iq5kj0a4ma2svnah48728uph854onpsq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
