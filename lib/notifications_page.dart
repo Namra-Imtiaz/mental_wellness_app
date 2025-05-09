@@ -453,114 +453,114 @@ Widget _buildTestNotificationButton() {
       child: Container(
         width: double.infinity,
         child: Column(
-          children: [
-            Text(
-              "Test Notifications",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: darkPurple,
-              ),
-            ),
-            SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () async {
-                      await _notificationService.showTestNotification();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Immediate test notification sent!'),
-                          backgroundColor: darkPurple,
-                          behavior: SnackBarBehavior.floating,
-                          margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                        )
-                      );
-                    },
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: darkPurple,
-                      side: BorderSide(color: darkPurple),
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    child: Text(
-                      'Immediate',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 8),
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () async {
-                      await _notificationService.showDelayedTestNotification();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Notification scheduled in 10 seconds!'),
-                          backgroundColor: darkPurple,
-                          behavior: SnackBarBehavior.floating,
-                          margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                        )
-                      );
-                    },
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: darkPurple,
-                      side: BorderSide(color: darkPurple),
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    child: Text(
-                      'Delayed (10s)',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 8),
-            OutlinedButton(
-              onPressed: () async {
-                await _notificationService.testExactDailyNotification();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Daily notification scheduled in 1 minute!'),
-                    backgroundColor: darkPurple,
-                    behavior: SnackBarBehavior.floating,
-                    margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  )
-                );
-              },
-              style: OutlinedButton.styleFrom(
-                foregroundColor: darkPurple,
-                side: BorderSide(color: darkPurple),
-                padding: EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-              child: Text(
-                'Test Daily (1 min)',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ],
+          // children: [
+          //   Text(
+          //     "Test Notifications",
+          //     style: TextStyle(
+          //       fontSize: 18,
+          //       fontWeight: FontWeight.bold,
+          //       color: darkPurple,
+          //     ),
+          //   ),
+          //   SizedBox(height: 12),
+          //   Row(
+          //     children: [
+          //       Expanded(
+          //         child: OutlinedButton(
+          //           onPressed: () async {
+          //             await _notificationService.showTestNotification();
+          //             ScaffoldMessenger.of(context).showSnackBar(
+          //               SnackBar(
+          //                 content: Text('Immediate test notification sent!'),
+          //                 backgroundColor: darkPurple,
+          //                 behavior: SnackBarBehavior.floating,
+          //                 margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
+          //                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          //               )
+          //             );
+          //           },
+          //           style: OutlinedButton.styleFrom(
+          //             foregroundColor: darkPurple,
+          //             side: BorderSide(color: darkPurple),
+          //             padding: EdgeInsets.symmetric(vertical: 16),
+          //             shape: RoundedRectangleBorder(
+          //               borderRadius: BorderRadius.circular(16),
+          //             ),
+          //           ),
+          //           child: Text(
+          //             'Immediate',
+          //             style: TextStyle(
+          //               fontSize: 14,
+          //               fontWeight: FontWeight.w600,
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //       SizedBox(width: 8),
+          //       Expanded(
+          //         child: OutlinedButton(
+          //           onPressed: () async {
+          //             await _notificationService.showDelayedTestNotification();
+          //             ScaffoldMessenger.of(context).showSnackBar(
+          //               SnackBar(
+          //                 content: Text('Notification scheduled in 10 seconds!'),
+          //                 backgroundColor: darkPurple,
+          //                 behavior: SnackBarBehavior.floating,
+          //                 margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
+          //                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          //               )
+          //             );
+          //           },
+          //           style: OutlinedButton.styleFrom(
+          //             foregroundColor: darkPurple,
+          //             side: BorderSide(color: darkPurple),
+          //             padding: EdgeInsets.symmetric(vertical: 16),
+          //             shape: RoundedRectangleBorder(
+          //               borderRadius: BorderRadius.circular(16),
+          //             ),
+          //           ),
+          //           child: Text(
+          //             'Delayed (10s)',
+          //             style: TextStyle(
+          //               fontSize: 14,
+          //               fontWeight: FontWeight.w600,
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          //   SizedBox(height: 8),
+          //   OutlinedButton(
+          //     onPressed: () async {
+          //       await _notificationService.testExactDailyNotification();
+          //       ScaffoldMessenger.of(context).showSnackBar(
+          //         SnackBar(
+          //           content: Text('Daily notification scheduled in 1 minute!'),
+          //           backgroundColor: darkPurple,
+          //           behavior: SnackBarBehavior.floating,
+          //           margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
+          //           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          //         )
+          //       );
+          //     },
+          //     style: OutlinedButton.styleFrom(
+          //       foregroundColor: darkPurple,
+          //       side: BorderSide(color: darkPurple),
+          //       padding: EdgeInsets.symmetric(vertical: 16),
+          //       shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(16),
+          //       ),
+          //     ),
+          //     child: Text(
+          //       'Test Daily (1 min)',
+          //       style: TextStyle(
+          //         fontSize: 14,
+          //         fontWeight: FontWeight.w600,
+          //       ),
+          //     ),
+          //   ),
+          // ], 
         ),
       ),
     ),

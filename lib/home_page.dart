@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'ai_therapy_page.dart';
+import 'thoughts_journal_page.dart'; // Import the journal page
 
 class HomePage extends StatefulWidget {
   @override
@@ -697,25 +698,11 @@ void _refreshQuote() {
         'iconColor': Color(0xFFF5716C),
       },
       {
-        'title': 'Anxiety Relief',
-        'icon': Icons.healing,
-        'description': 'Exercises & techniques',
-        'iconBgColor': Color(0xFFE3F4FF),
-        'iconColor': Color(0xFF5CAEF9),
-      },
-      {
         'title': 'Music Therapy',
         'icon': Icons.music_note,
         'description': 'Calm your mind',
         'iconBgColor': Color(0xFFE5F7ED),
         'iconColor': Color(0xFF49C67A),
-      },
-      {
-        'title': 'Mood Tracker',
-        'icon': Icons.bar_chart,
-        'description': 'Track your progress',
-        'iconBgColor': Color(0xFFFFF2E2),
-        'iconColor': Color(0xFFFFAD41),
       },
       {
         'title': 'Decisions',
@@ -724,12 +711,12 @@ void _refreshQuote() {
         'iconBgColor': Color(0xFFEBE5FF),
         'iconColor': Color(0xFF7B66FF),
       },
-      {
-        'title': 'Screen Time',
-        'icon': Icons.timer,
-        'description': 'Digital well-being',
-        'iconBgColor': Color(0xFFE0F2F3),
-        'iconColor': Color(0xFF57BEC3),
+       {
+        'title': 'Thoughts Journal',  
+        'icon': Icons.edit_note_rounded,
+        'description': 'Write your thoughts',
+        'iconBgColor': Color(0xFFE3F4FF),
+        'iconColor': Color(0xFF5CAEF9),
       },
     ];
 
@@ -783,12 +770,19 @@ void _refreshQuote() {
 }) {
   return GestureDetector(
     onTap: () {
-      // Special handling for AI Therapy
+      // Special handling for different features
       if (title == 'AI Therapy') {
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => AITherapyPage(),
+          ),
+        );
+      } else if (title == 'Thoughts Journal') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ThoughtsJournalPage(),
           ),
         );
       } else {

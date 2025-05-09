@@ -616,68 +616,106 @@ class _SplashScreenSequenceState extends State<SplashScreenSequence> with Ticker
 
   // AI therapy animation
   Widget _buildAITherapyAnimation() {
-    return AnimatedBuilder(
-      animation: _animationController,
-      builder: (context, child) {
-        return Stack(
-          alignment: Alignment.center,
-          children: [
-            // Brain outline
-            CustomPaint(
-              size: Size(280, 280),
-              painter: BrainPainter(
-                progress: _animationController.value,
+  return AnimatedBuilder(
+    animation: _animationController,
+    builder: (context, child) {
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          // Simple glowing circle
+          Container(
+            width: 200,
+            height: 200,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0xFFF5716C).withOpacity(0.3),
+                  blurRadius: 25,
+                  spreadRadius: 5,
+                ),
+              ],
+            ),
+          ),
+          
+          // Center icon with subtle animation
+          Center(
+            child: Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
                 color: Color(0xFFF5716C),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xFFF5716C).withOpacity(0.4),
+                    blurRadius: 15,
+                    spreadRadius: 5,
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.support_agent,
+                size: 50,
+                color: Colors.white,
               ),
             ),
-            // Pulse effect
-            ...List.generate(
-              2,
-              (index) => AnimatedContainer(
-                duration: Duration(milliseconds: 1500),
-                curve: Curves.easeInOut,
-                width: 220 + (index * 20) * sin(DateTime.now().millisecondsSinceEpoch / 800),
-                height: 220 + (index * 20) * sin(DateTime.now().millisecondsSinceEpoch / 800),
+          ),
+          
+          // Pulsing rings
+          ...List.generate(3, (index) {
+            final delay = index * 0.25;
+            final progress = (_animationController.value - delay) % 1.0;
+            final visible = _animationController.value > delay && progress < 0.7;
+            
+            return Opacity(
+              opacity: visible ? (1.0 - progress) : 0,
+              child: Container(
+                width: visible ? 100 + progress * 150 : 0,
+                height: visible ? 100 + progress * 150 : 0,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: Color(0xFFF5716C).withOpacity(0.3 - (index * 0.1)),
+                    color: Color(0xFFF5716C).withOpacity(0.5),
                     width: 2,
                   ),
                 ),
               ),
-            ),
-            // Digital particles
-            ...List.generate(
-              20,
-              (index) {
-                final angle = index * (pi / 10);
-                final radius = 100 + 30 * sin(index * 0.8);
-                final delay = index * 0.05;
-                final size = 4 + 4 * Random().nextDouble();
-                
-                return Positioned(
-                  left: 140 + radius * cos(angle) * _animationController.value,
-                  top: 140 + radius * sin(angle) * _animationController.value,
-                  child: Opacity(
-                    opacity: _animationController.value > delay ? 1.0 : 0.0,
-                    child: Container(
-                      width: size,
-                      height: size,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(0xFFF5716C).withOpacity(0.7),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+            );
+          }),
+          
+          // Clock hands to represent 24/7
+          ...List.generate(2, (index) {
+            final isHourHand = index == 0;
+            final angle = isHourHand 
+                ? _animationController.value * 2 * pi / 12
+                : _animationController.value * 2 * pi;
+            final length = isHourHand ? 30.0 : 40.0;
+            final width = isHourHand ? 4.0 : 3.0;
+            
+            return Center(
+              // child: Transform(
+              //   alignment: Alignment.topCenter,
+              //   transform: Matrix4.identity()
+              //     ..translate(0.0, 50.0, 0.0)
+              //     ..rotateZ(angle),
+              //   child: Container(
+              //     height: length,
+              //     width: width,
+              //     decoration: BoxDecoration(
+              //       color: Colors.white,
+              //       borderRadius: BorderRadius.circular(width / 2),
+              //     ),
+              //   ),
+              // ),
+            );
+          }),
+        ],
+      );
+    },
+  );
+}
 }
 
 // Custom painter for the garden animation
