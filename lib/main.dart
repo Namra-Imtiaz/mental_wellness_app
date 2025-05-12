@@ -4,9 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:timezone/data/latest.dart' as tz_data;
 import 'package:timezone/timezone.dart' as tz;
-import 'notification_service.dart';
-import 'auth_check.dart';
-import 'splash_screen.dart'; 
+import 'services/notification_service.dart';
+import 'features/homePage/splash_screen.dart'; 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

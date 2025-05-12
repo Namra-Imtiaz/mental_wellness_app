@@ -28,18 +28,15 @@ class _AITherapyPageState extends State<AITherapyPage> {
 
     setState(() {
       // Add user message
-      _messages.add({
-        'text': _messageController.text,
-        'isUser': true,
-      });
-      
+      _messages.add({'text': _messageController.text, 'isUser': true});
+
       // Show typing indicator
       _isTyping = true;
     });
 
     // Clear the input field
     _messageController.clear();
-    
+
     // Scroll to bottom
     _scrollToBottom();
 
@@ -53,7 +50,7 @@ class _AITherapyPageState extends State<AITherapyPage> {
           'isUser': false,
         });
       });
-      
+
       // Scroll to bottom again after response
       _scrollToBottom();
     });
@@ -74,14 +71,16 @@ class _AITherapyPageState extends State<AITherapyPage> {
   // Simple responses based on user input
   String _getAIResponse(String userMessage) {
     userMessage = userMessage.toLowerCase();
-    
+
     if (userMessage.contains('hello') || userMessage.contains('hi')) {
       return "Hello! I'm your AI therapy assistant. How are you feeling today?";
     } else if (userMessage.contains('sad') || userMessage.contains('unhappy')) {
       return "I'm sorry to hear you're feeling down. Would you like to talk about what's making you feel this way?";
-    } else if (userMessage.contains('anxious') || userMessage.contains('anxiety')) {
+    } else if (userMessage.contains('anxious') ||
+        userMessage.contains('anxiety')) {
       return "Anxiety can be challenging. Let's take a deep breath together. Can you tell me more about what's causing your anxiety?";
-    } else if (userMessage.contains('stress') || userMessage.contains('stressed')) {
+    } else if (userMessage.contains('stress') ||
+        userMessage.contains('stressed')) {
       return "Stress affects us all. What specifically is causing you stress right now?";
     } else if (userMessage.contains('thank')) {
       return "You're welcome! I'm here to support you whenever you need someone to talk to.";
@@ -129,29 +128,30 @@ class _AITherapyPageState extends State<AITherapyPage> {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                child: _messages.isEmpty
-                    ? _buildWelcomeMessage()
-                    : ListView.builder(
-                        controller: _scrollController,
-                        itemCount: _messages.length + (_isTyping ? 1 : 0),
-                        padding: EdgeInsets.only(bottom: 16, top: 16),
-                        itemBuilder: (context, index) {
-                          // Display typing indicator
-                          if (_isTyping && index == _messages.length) {
-                            return _buildTypingIndicator();
-                          }
-                          
-                          // Display message
-                          final message = _messages[index];
-                          return _buildMessageBubble(
-                            text: message['text'],
-                            isUser: message['isUser'],
-                          );
-                        },
-                      ),
+                child:
+                    _messages.isEmpty
+                        ? _buildWelcomeMessage()
+                        : ListView.builder(
+                          controller: _scrollController,
+                          itemCount: _messages.length + (_isTyping ? 1 : 0),
+                          padding: EdgeInsets.only(bottom: 16, top: 16),
+                          itemBuilder: (context, index) {
+                            // Display typing indicator
+                            if (_isTyping && index == _messages.length) {
+                              return _buildTypingIndicator();
+                            }
+
+                            // Display message
+                            final message = _messages[index];
+                            return _buildMessageBubble(
+                              text: message['text'],
+                              isUser: message['isUser'],
+                            );
+                          },
+                        ),
               ),
             ),
-            
+
             // Input area
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -219,7 +219,8 @@ class _AITherapyPageState extends State<AITherapyPage> {
 
   Widget _buildWelcomeMessage() {
     return Center(
-      child: SingleChildScrollView(  // Wrap in SingleChildScrollView to prevent overflow
+      child: SingleChildScrollView(
+        // Wrap in SingleChildScrollView to prevent overflow
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -346,9 +347,7 @@ class _AITherapyPageState extends State<AITherapyPage> {
                 color: primaryPurple.withOpacity(0.6),
                 shape: BoxShape.circle,
               ),
-              child: Center(
-                child: _TypingDot(),
-              ),
+              child: Center(child: _TypingDot()),
             ),
           ),
         ),
@@ -362,7 +361,8 @@ class _TypingDot extends StatefulWidget {
   _TypingDotState createState() => _TypingDotState();
 }
 
-class _TypingDotState extends State<_TypingDot> with SingleTickerProviderStateMixin {
+class _TypingDotState extends State<_TypingDot>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 

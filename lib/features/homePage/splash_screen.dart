@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 import 'package:lottie/lottie.dart';
-import 'auth_check.dart';
+import '../auth/auth_check.dart';
 
 // Add this to your splash_screen.dart file
 

@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'feature_page.dart';
 import 'profile_page.dart';
-import 'notifications_page.dart';
+import '../notification/notifications_page.dart';
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'ai_therapy_page.dart';
 import 'thoughts_journal_page.dart'; // Import the journal page
+import '../ai_therapy/ai_therapy_page.dart';
+import '../music_therapy/music_therapy_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   int _selectedFeelingIndex = -1;
   late AnimationController _animationController;
   final List<String> _feelings = ["😊", "😐", "😕", "😢", "😡"];
@@ -21,7 +23,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   String? _feedbackMessage;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  String _userName="there";
+  String _userName = "there";
   bool _isProfileActive = false;
   bool _isNotificationActive = false;
 
@@ -32,96 +34,104 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   final List<Map<String, String>> _motivationalQuotes = [
     {
-      "quote": "Your mind is a garden, your thoughts are the seeds. You can grow flowers or you can grow weeds.",
-      "author": "Unknown"
+      "quote":
+          "Your mind is a garden, your thoughts are the seeds. You can grow flowers or you can grow weeds.",
+      "author": "Unknown",
     },
     {
       "quote": "The only way to do great work is to love what you do.",
-      "author": "Steve Jobs"
+      "author": "Steve Jobs",
     },
     {
-      "quote": "Happiness is not something ready-made. It comes from your own actions.",
-      "author": "Dalai Lama"
+      "quote":
+          "Happiness is not something ready-made. It comes from your own actions.",
+      "author": "Dalai Lama",
     },
     {
-      "quote": "Your mental health is a priority. Your happiness is essential. Your self-care is a necessity.",
-      "author": "Unknown"
+      "quote":
+          "Your mental health is a priority. Your happiness is essential. Your self-care is a necessity.",
+      "author": "Unknown",
     },
     {
-      "quote": "You don't have to control your thoughts. You just have to stop letting them control you.",
-      "author": "Dan Millman"
+      "quote":
+          "You don't have to control your thoughts. You just have to stop letting them control you.",
+      "author": "Dan Millman",
     },
     {
       "quote": "Self-care is not self-indulgence, it is self-preservation.",
-      "author": "Audre Lorde"
+      "author": "Audre Lorde",
     },
     {
-      "quote": "You are not your illness. You have an individual story to tell. You have a name, a history, a personality.",
-      "author": "Julian Seifter"
+      "quote":
+          "You are not your illness. You have an individual story to tell. You have a name, a history, a personality.",
+      "author": "Julian Seifter",
     },
     {
       "quote": "Be gentle with yourself, you're doing the best you can.",
-      "author": "Unknown"
+      "author": "Unknown",
     },
     {
-      "quote": "What mental health needs is more sunlight, more candor, and more unashamed conversation.",
-      "author": "Glenn Close"
+      "quote":
+          "What mental health needs is more sunlight, more candor, and more unashamed conversation.",
+      "author": "Glenn Close",
     },
     {
-      "quote": "Recovery is not one and done. It is a lifelong journey that takes place one day, one step at a time.",
-      "author": "Unknown"
-    }
+      "quote":
+          "Recovery is not one and done. It is a lifelong journey that takes place one day, one step at a time.",
+      "author": "Unknown",
+    },
   ];
 
-// Add variable to store the current quote
-late Map<String, String> _currentQuote;
-  
+  // Add variable to store the current quote
+  late Map<String, String> _currentQuote;
+
   @override
-void initState() {
-  super.initState();
-  _animationController = AnimationController(
-    vsync: this,
-    duration: Duration(milliseconds: 600),
-  )..forward();
-  
-  _setDailyQuote();
-  _loadUserData();
-}
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 600),
+    )..forward();
 
-// Method to set a quote based on the current day or randomly
-void _setDailyQuote() {
-  final random = Random();
-  _currentQuote = _motivationalQuotes[random.nextInt(_motivationalQuotes.length)];
-}
-
-Future<void> _loadUserData() async {
-  try {
-    User? currentUser = _auth.currentUser;
-    if (currentUser != null) {
-      DocumentSnapshot userDoc = await _firestore
-          .collection('users')
-          .doc(currentUser.uid)
-          .get();
-      
-      if (userDoc.exists) {
-        Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
-        setState(() {
-          _userName = userData['name'] ?? "there";
-        });
-      }
-    }
-  } catch (e) {
-    print('Error loading user data: $e');
+    _setDailyQuote();
+    _loadUserData();
   }
-}
 
-// Function to refresh the quote manually
-void _refreshQuote() {
-  setState(() {
+  // Method to set a quote based on the current day or randomly
+  void _setDailyQuote() {
     final random = Random();
-    _currentQuote = _motivationalQuotes[random.nextInt(_motivationalQuotes.length)];
-  });
-}
+    _currentQuote =
+        _motivationalQuotes[random.nextInt(_motivationalQuotes.length)];
+  }
+
+  Future<void> _loadUserData() async {
+    try {
+      User? currentUser = _auth.currentUser;
+      if (currentUser != null) {
+        DocumentSnapshot userDoc =
+            await _firestore.collection('users').doc(currentUser.uid).get();
+
+        if (userDoc.exists) {
+          Map<String, dynamic> userData =
+              userDoc.data() as Map<String, dynamic>;
+          setState(() {
+            _userName = userData['name'] ?? "there";
+          });
+        }
+      }
+    } catch (e) {
+      print('Error loading user data: $e');
+    }
+  }
+
+  // Function to refresh the quote manually
+  void _refreshQuote() {
+    setState(() {
+      final random = Random();
+      _currentQuote =
+          _motivationalQuotes[random.nextInt(_motivationalQuotes.length)];
+    });
+  }
 
   @override
   void dispose() {
@@ -132,13 +142,18 @@ void _refreshQuote() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF0E9FF), // Updated to match login/signup background
+      backgroundColor: Color(
+        0xFFF0E9FF,
+      ), // Updated to match login/signup background
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [lightPurple, Color(0xFFF0E9FF)], // Match login/signup gradient
+            colors: [
+              lightPurple,
+              Color(0xFFF0E9FF),
+            ], // Match login/signup gradient
             stops: [0.0, 1.0],
           ),
         ),
@@ -175,9 +190,7 @@ void _refreshQuote() {
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
                 sliver: _buildFeatureGrid(),
               ),
-              SliverToBoxAdapter(
-                child: SizedBox(height: 24),
-              ),
+              SliverToBoxAdapter(child: SizedBox(height: 24)),
             ],
           ),
         ),
@@ -263,61 +276,62 @@ void _refreshQuote() {
   }
 
   Widget _buildProfileButton({required double delay}) {
-  return FadeTransition(
-    opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Interval(delay, delay + 0.4, curve: Curves.easeOut),
-      ),
-    ),
-    child: ScaleTransition(
-      scale: Tween<double>(begin: 0.8, end: 1.0).animate(
+    return FadeTransition(
+      opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
           parent: _animationController,
           curve: Interval(delay, delay + 0.4, curve: Curves.easeOut),
         ),
       ),
-      child: GestureDetector(
-        onTap: () {
-          setState(() {
-            _isProfileActive = true;
-          });
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ProfilePage()),
-          ).then((_) {
-            setState(() {
-              _isProfileActive = false;
-            });
-          });
-        },
-        child: Container(
-          padding: EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: _isProfileActive ? darkPurple.withOpacity(0.1) : Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: darkPurple.withOpacity(0.15),
-                blurRadius: 10,
-                offset: Offset(0, 3),
-              ),
-            ],
-            border: Border.all(
-              color: _isProfileActive ? darkPurple : Colors.transparent,
-              width: 1.5,
-            ),
+      child: ScaleTransition(
+        scale: Tween<double>(begin: 0.8, end: 1.0).animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: Interval(delay, delay + 0.4, curve: Curves.easeOut),
           ),
-          child: Icon(
-            Icons.person_rounded,
-            size: 24,
-            color: _isProfileActive ? darkPurple : primaryPurple,
+        ),
+        child: GestureDetector(
+          onTap: () {
+            setState(() {
+              _isProfileActive = true;
+            });
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfilePage()),
+            ).then((_) {
+              setState(() {
+                _isProfileActive = false;
+              });
+            });
+          },
+          child: Container(
+            padding: EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color:
+                  _isProfileActive ? darkPurple.withOpacity(0.1) : Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: darkPurple.withOpacity(0.15),
+                  blurRadius: 10,
+                  offset: Offset(0, 3),
+                ),
+              ],
+              border: Border.all(
+                color: _isProfileActive ? darkPurple : Colors.transparent,
+                width: 1.5,
+              ),
+            ),
+            child: Icon(
+              Icons.person_rounded,
+              size: 24,
+              color: _isProfileActive ? darkPurple : primaryPurple,
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   Widget _buildWelcomeText() {
     return SlideTransition(
@@ -405,28 +419,33 @@ void _refreshQuote() {
 
   Widget _buildMoodOption(int index) {
     bool isSelected = _selectedFeelingIndex == index;
-    
+
     return GestureDetector(
       onTap: () {
         setState(() {
           _selectedFeelingIndex = index;
-          
+
           // Set different feedback message based on selected feeling
-          switch(index) {
+          switch (index) {
             case 0:
-              _feedbackMessage = "Great! Let's keep that positive energy going!";
+              _feedbackMessage =
+                  "Great! Let's keep that positive energy going!";
               break;
             case 1:
-              _feedbackMessage = "Feeling okay is perfectly fine. How can we improve your day?";
+              _feedbackMessage =
+                  "Feeling okay is perfectly fine. How can we improve your day?";
               break;
             case 2:
-              _feedbackMessage = "Feeling meh? Maybe try one of our mood-boosting activities.";
+              _feedbackMessage =
+                  "Feeling meh? Maybe try one of our mood-boosting activities.";
               break;
             case 3:
-              _feedbackMessage = "Sorry you're feeling down. Our guided meditation might help.";
+              _feedbackMessage =
+                  "Sorry you're feeling down. Our guided meditation might help.";
               break;
             case 4:
-              _feedbackMessage = "It's okay to feel angry. Try our breathing exercises to cool down.";
+              _feedbackMessage =
+                  "It's okay to feel angry. Try our breathing exercises to cool down.";
               break;
           }
         });
@@ -439,32 +458,30 @@ void _refreshQuote() {
             width: isSelected ? 60 : 52,
             height: isSelected ? 60 : 52,
             decoration: BoxDecoration(
-              color: isSelected
-                  ? darkPurple.withOpacity(0.2)
-                  : Colors.grey.withOpacity(0.07),
+              color:
+                  isSelected
+                      ? darkPurple.withOpacity(0.2)
+                      : Colors.grey.withOpacity(0.07),
               shape: BoxShape.circle,
               border: Border.all(
-                color: isSelected
-                    ? darkPurple
-                    : Colors.transparent,
+                color: isSelected ? darkPurple : Colors.transparent,
                 width: 2,
               ),
-              boxShadow: isSelected
-                  ? [
-                      BoxShadow(
-                        color: darkPurple.withOpacity(0.3),
-                        blurRadius: 12,
-                        offset: Offset(0, 4),
-                      )
-                    ]
-                  : [],
+              boxShadow:
+                  isSelected
+                      ? [
+                        BoxShadow(
+                          color: darkPurple.withOpacity(0.3),
+                          blurRadius: 12,
+                          offset: Offset(0, 4),
+                        ),
+                      ]
+                      : [],
             ),
             child: Center(
               child: Text(
                 _feelings[index],
-                style: TextStyle(
-                  fontSize: isSelected ? 28 : 24,
-                ),
+                style: TextStyle(fontSize: isSelected ? 28 : 24),
               ),
             ),
           ),
@@ -493,18 +510,11 @@ void _refreshQuote() {
         decoration: BoxDecoration(
           color: darkPurple.withOpacity(0.12),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: darkPurple.withOpacity(0.3),
-            width: 1,
-          ),
+          border: Border.all(color: darkPurple.withOpacity(0.3), width: 1),
         ),
         child: Row(
           children: [
-            Icon(
-              Icons.lightbulb_outline,
-              color: darkPurple,
-              size: 20,
-            ),
+            Icon(Icons.lightbulb_outline, color: darkPurple, size: 20),
             SizedBox(width: 12),
             Expanded(
               child: Text(
@@ -546,10 +556,7 @@ void _refreshQuote() {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [
-                  darkPurple,
-                  primaryPurple,
-                ],
+                colors: [darkPurple, primaryPurple],
                 stops: [0.2, 1.0],
               ),
               borderRadius: BorderRadius.circular(24),
@@ -580,7 +587,10 @@ void _refreshQuote() {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(12),
@@ -611,7 +621,8 @@ void _refreshQuote() {
                     ),
                     SizedBox(height: 16),
                     Text(
-                      _currentQuote["quote"] ?? "Your mind is a garden, your thoughts are the seeds.",
+                      _currentQuote["quote"] ??
+                          "Your mind is a garden, your thoughts are the seeds.",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -727,41 +738,44 @@ void _refreshQuote() {
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
       ),
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final feature = features[index];
-          return SlideTransition(
-            position: Tween<Offset>(begin: Offset(0, 0.3), end: Offset.zero).animate(
+      delegate: SliverChildBuilderDelegate((context, index) {
+        final feature = features[index];
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset(0, 0.3),
+            end: Offset.zero,
+          ).animate(
+            CurvedAnimation(
+              parent: _animationController,
+              curve: Interval(0.5 + (index * 0.05), 1.0, curve: Curves.easeOut),
+            ),
+          ),
+          child: FadeTransition(
+            opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
               CurvedAnimation(
                 parent: _animationController,
-                curve: Interval(0.5 + (index * 0.05), 1.0, curve: Curves.easeOut),
-              ),
-            ),
-            child: FadeTransition(
-              opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
-                CurvedAnimation(
-                  parent: _animationController,
-                  curve: Interval(0.5 + (index * 0.05), 1.0, curve: Curves.easeOut),
+                curve: Interval(
+                  0.5 + (index * 0.05),
+                  1.0,
+                  curve: Curves.easeOut,
                 ),
               ),
-              child: _buildFeatureTile(
-                context,
-                title: feature['title'],
-                icon: feature['icon'],
-                description: feature['description'],
-                iconBgColor: feature['iconBgColor'],
-                iconColor: feature['iconColor'],
-              ),
             ),
-          );
-        },
-        childCount: features.length,
-      ),
+            child: _buildFeatureTile(
+              context,
+              title: feature['title'],
+              icon: feature['icon'],
+              description: feature['description'],
+              iconBgColor: feature['iconBgColor'],
+              iconColor: feature['iconColor'],
+            ),
+          ),
+        );
+      }, childCount: features.length),
     );
   }
 
-  Widget _buildFeatureTile(
-  BuildContext context, {
+  Widget _buildFeatureTile( BuildContext context, {
   required String title,
   required IconData icon,
   required String description,
@@ -785,7 +799,14 @@ void _refreshQuote() {
             builder: (context) => ThoughtsJournalPage(),
           ),
         );
-      } else {
+      }
+        else if (title == 'Music Therapy') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MusicTherapyPage()),
+          );
+      } 
+      else {
         // Default handling for other features
         Navigator.push(
           context,
@@ -795,6 +816,7 @@ void _refreshQuote() {
         );
       }
     },
+
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -819,11 +841,7 @@ void _refreshQuote() {
                   color: iconBgColor,
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: Icon(
-                  icon,
-                  size: 30,
-                  color: iconColor,
-                ),
+                child: Icon(icon, size: 30, color: iconColor),
               ),
               Spacer(),
               Text(
@@ -837,10 +855,7 @@ void _refreshQuote() {
               SizedBox(height: 6),
               Text(
                 description,
-                style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.grey[600],
-                ),
+                style: TextStyle(fontSize: 13, color: Colors.grey[600]),
               ),
             ],
           ),
