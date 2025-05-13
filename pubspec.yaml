@@ -34,6 +34,15 @@ dependencies:
   shared_preferences: ^2.2.0
   cupertino_icons: ^1.0.8
 
+  # meditation
+  readmore: ^3.0.0
+  dotted_dashed_line: ^0.0.3
+  video_player: ^2.9.5
+  chewie: ^1.11.3
+  aws_s3_api: ^2.0.0
+  flutter_dotenv: ^5.2.1
+  get_it: ^8.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -47,6 +56,12 @@ flutter:
     - assets/images/
     - assets/lottie/
     - assets/svg/
+    - assets/images/meditation/focus/items/
+    - assets/images/meditation/focus/video_thumbnails/
+    - assets/images/meditation/relax/items/
+    - assets/images/meditation/relax/video_thumbnails/
+    - assets/images/meditation/mind/items/
+    - assets/images/meditation/mind/video_thumbnails/
   #   - images/a_dot_ham.jpeg
 
   # For custom fonts, make sure the font files exist before adding.

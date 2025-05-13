@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import '../../../models/song.dart';
-import '../../../services/api_service.dart';
+import 'models/song.dart';
+import 'service/api_service.dart';
 import 'now_playing_page.dart';
 import 'search_results_page.dart';
 

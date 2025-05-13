@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'thoughts_journal_page.dart'; // Import the journal page
 import '../ai_therapy/ai_therapy_page.dart';
 import '../music_therapy/music_therapy_page.dart';
+import '../meditation/views/meditation/meditationPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -804,6 +805,13 @@ class _HomePageState extends State<HomePage>
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => MusicTherapyPage()),
+          );
+      } 
+
+      else if (title == 'Meditation') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MeditationPage()),
           );
       } 
       else {

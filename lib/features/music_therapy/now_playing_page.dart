@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import '../../../models/song.dart';
+import 'models/song.dart';
 
 class NowPlayingPage extends StatefulWidget {
   final Song song;
