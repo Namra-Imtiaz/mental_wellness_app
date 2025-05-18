@@ -29,7 +29,7 @@ final mindMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('mind', 'Deep Mindful Breathing'),
       videothumbnail:
           'assets/images/meditation/mind/video_thumbnails/Deep Mindful Breathing.png',
-      duration: "2:00",
+      duration: "6:07",
       steps: [
         MeditationStepModel(
           title: "Find a Quiet and Comfortable Place",
@@ -75,7 +75,7 @@ final mindMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('mind', 'Thought Observation Meditation'),
       videothumbnail:
           'assets/images/meditation/mind/video_thumbnails/Thought Observation Meditation.png',
-      duration: "2:00",
+      duration: "6:43",
       steps: [
         MeditationStepModel(
           title: "Sit Comfortably in a Quiet Space",
@@ -121,7 +121,7 @@ final mindMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('mind', 'Guided Imagery Meditation'),
       videothumbnail:
           'assets/images/meditation/mind/video_thumbnails/Guided Imagery Meditation.png',
-      duration: "2:00",
+      duration: "5:19",
       steps: [
         MeditationStepModel(
           title: "Find a Comfortable Position",
@@ -167,7 +167,7 @@ final mindMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('mind', 'Loving Kindness Meditation'),
       videothumbnail:
           'assets/images/meditation/mind/video_thumbnails/Loving Kindness Meditation.png',
-      duration: "2:00",
+      duration: "4:45",
       steps: [
         MeditationStepModel(
           title: "Sit in a Comfortable Position",
@@ -213,7 +213,7 @@ final mindMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('mind', 'Breath Counting Meditation'),
       videothumbnail:
           'assets/images/meditation/mind/video_thumbnails/Breath Counting Meditation.png',
-      duration: "2:00",
+      duration: "11:45",
       steps: [
         MeditationStepModel(
           title: "Sit in a Quiet, Comfortable Position",
@@ -259,7 +259,7 @@ final mindMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('mind', 'Affirmation Meditation'),
       videothumbnail:
           'assets/images/meditation/mind/video_thumbnails/Affirmation Meditation.png',
-      duration: "2:00",
+      duration: "5:14",
       steps: [
         MeditationStepModel(
           title: "Sit Comfortably with Your Eyes Closed",
@@ -305,7 +305,7 @@ final mindMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('mind', 'Chakra Visualization Meditation'),
       videothumbnail:
           'assets/images/meditation/mind/video_thumbnails/Chakra Visualization Meditation.png',
-      duration: "2:00",
+      duration: "6:24",
       steps: [
         MeditationStepModel(
           title: "Find a Comfortable Position",
@@ -351,7 +351,7 @@ final mindMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('mind', 'Gratitude Meditation'),
       videothumbnail:
           'assets/images/meditation/mind/video_thumbnails/Gratitude Meditation.png',
-      duration: "2:00",
+      duration: "5:15",
       steps: [
         MeditationStepModel(
           title: "Find a Comfortable and Quiet Space",
@@ -397,7 +397,7 @@ final mindMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('mind', "Nature Visualization Meditation"),
       videothumbnail:
           'assets/images/meditation/mind/video_thumbnails/Nature Visualization Meditation.png',
-      duration: "2:00",
+      duration: "6:24",
       steps: [
         MeditationStepModel(
           title: "Find a Comfortable Position",
@@ -443,7 +443,7 @@ final mindMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('mind', 'Zen Mindfulness Meditation'),
       videothumbnail:
           'assets/images/meditation/mind/video_thumbnails/Zen Mindfulness Meditation.png',
-      duration: "2:00",
+      duration: "5:27",
       steps: [
         MeditationStepModel(
           title: "Find a Stable and Comfortable Posture",

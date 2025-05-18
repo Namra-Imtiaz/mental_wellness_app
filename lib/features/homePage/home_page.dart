@@ -9,6 +9,7 @@ import 'thoughts_journal_page.dart'; // Import the journal page
 import '../ai_therapy/ai_therapy_page.dart';
 import '../music_therapy/music_therapy_page.dart';
 import '../meditation/views/meditation/meditationPage.dart';
+import '../decision_explorer/decision_explorer/uncertainty_explorer_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -723,8 +724,8 @@ class _HomePageState extends State<HomePage>
         'iconBgColor': Color(0xFFEBE5FF),
         'iconColor': Color(0xFF7B66FF),
       },
-       {
-        'title': 'Thoughts Journal',  
+      {
+        'title': 'Thoughts Journal',
         'icon': Icons.edit_note_rounded,
         'description': 'Write your thoughts',
         'iconBgColor': Color(0xFFE3F4FF),
@@ -776,54 +777,50 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  Widget _buildFeatureTile( BuildContext context, {
-  required String title,
-  required IconData icon,
-  required String description,
-  required Color iconBgColor,
-  required Color iconColor,
-}) {
-  return GestureDetector(
-    onTap: () {
-      // Special handling for different features
-      if (title == 'AI Therapy') {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => AITherapyPage(),
-          ),
-        );
-      } else if (title == 'Thoughts Journal') {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ThoughtsJournalPage(),
-          ),
-        );
-      }
-        else if (title == 'Music Therapy') {
+  Widget _buildFeatureTile(
+    BuildContext context, {
+    required String title,
+    required IconData icon,
+    required String description,
+    required Color iconBgColor,
+    required Color iconColor,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        // Special handling for different features
+        if (title == 'AI Therapy') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AITherapyPage()),
+          );
+        } else if (title == 'Thoughts Journal') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ThoughtsJournalPage()),
+          );
+        } else if (title == 'Music Therapy') {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => MusicTherapyPage()),
           );
-      } 
-
-      else if (title == 'Meditation') {
+        } else if (title == 'Meditation') {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => MeditationPage()),
           );
-      } 
-      else {
-        // Default handling for other features
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => FeaturePage(title: title),
-          ),
-        );
-      }
-    },
+        } else if (title == 'Decisions') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => UncertaintyExplorerPage()),
+          );
+        } else {
+          // Default handling for other features
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FeaturePage(title: title)),
+          );
+        }
+      },
 
       child: Container(
         decoration: BoxDecoration(

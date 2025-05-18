@@ -29,7 +29,7 @@ final relaxMeditationCategory = MeditationCategoryModel(
       ),
       videothumbnail:
           'assets/images/meditation/relax/video_thumbnails/Progressive Muscle Relaxation (PMR).png',
-      duration: "2:00",
+      duration: "21:12",
       steps: [
         MeditationStepModel(
           title: "Find a Comfortable Position",
@@ -74,7 +74,7 @@ final relaxMeditationCategory = MeditationCategoryModel(
           "This relaxation technique uses vivid mental images to calm the mind and reduce stress by visualizing peaceful and serene settings.",
       videoUrl: generateExerciseUrl('relax', 'Guided Imagery (Relaxation)'),
       videothumbnail: 'assets/images/meditation/relax/video_thumbnails/gi.png',
-      duration: "2:00",
+      duration: "10:15",
       steps: [
         MeditationStepModel(
           title: "Find a Comfortable Position",
@@ -123,7 +123,7 @@ final relaxMeditationCategory = MeditationCategoryModel(
       ),
       videothumbnail:
           'assets/images/meditation/relax/video_thumbnails/Deep Breathing (Abdominal Breathing).png',
-      duration: "2:00",
+      duration: "7:27",
       steps: [
         MeditationStepModel(
           title: "Sit Comfortably",
@@ -168,7 +168,7 @@ final relaxMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('relax', 'Body Scan Meditation'),
       videothumbnail:
           'assets/images/meditation/relax/video_thumbnails/Body Scan Meditation.png',
-      duration: "2:00",
+      duration: "11:38",
       steps: [
         MeditationStepModel(
           title: "Get Comfortable",
@@ -214,7 +214,7 @@ final relaxMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('relax', 'Mindfulness for Relaxation'),
       videothumbnail:
           'assets/images/meditation/relax/video_thumbnails/Mindfulness for Relaxation.png',
-      duration: "2:00",
+      duration: "5:14",
       steps: [
         MeditationStepModel(
           title: "Find a Quiet Space",
@@ -260,7 +260,7 @@ final relaxMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('relax', 'Self-Hypnosis Relaxation'),
       videothumbnail:
           'assets/images/meditation/relax/video_thumbnails/Self Hypnosis Relaxation.png',
-      duration: "2:00",
+      duration: "10:03",
       steps: [
         MeditationStepModel(
           title: "Sit or Lie Down Comfortably",
@@ -306,7 +306,7 @@ final relaxMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('relax', 'Sound Healing Meditation'),
       videothumbnail:
           'assets/images/meditation/relax/video_thumbnails/Sound Healing Meditation.png',
-      duration: "2:00",
+      duration: "10:15",
       steps: [
         MeditationStepModel(
           title: "Find a Comfortable Position",
@@ -352,7 +352,7 @@ final relaxMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('relax', 'Yoga Nidra Mini Session'),
       videothumbnail:
           'assets/images/meditation/relax/video_thumbnails/Yoga Nidra Mini Session.png',
-      duration: "2:00",
+      duration: "6:41",
       steps: [
         MeditationStepModel(
           title: "Lie Down Comfortably",
@@ -397,7 +397,7 @@ final relaxMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('relax', 'Nature Walk Meditation'),
       videothumbnail:
           'assets/images/meditation/relax/video_thumbnails/Nature Walk Meditation.png',
-      duration: "2:00",
+      duration: "31:12",
       steps: [
         MeditationStepModel(
           title: "Find a Peaceful Outdoor Space",
@@ -443,7 +443,7 @@ final relaxMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('relax', 'Tratak Meditation'),
       videothumbnail:
           'assets/images/meditation/relax/video_thumbnails/Tratak Meditation.png',
-      duration: "5:00",
+      duration: "8:57",
       steps: [
         MeditationStepModel(
           title: "Prepare Your Space",

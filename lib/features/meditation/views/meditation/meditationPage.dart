@@ -18,6 +18,7 @@ class MeditationPage extends StatelessWidget {
     var media = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFF8F6FF),
         centerTitle: true,
         title: Text(
           'Meditation',

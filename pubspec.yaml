@@ -42,6 +42,7 @@ dependencies:
   aws_s3_api: ^2.0.0
   flutter_dotenv: ^5.2.1
   get_it: ^8.0.3
+  fl_chart: ^0.65.0
 
 dev_dependencies:
   flutter_test:

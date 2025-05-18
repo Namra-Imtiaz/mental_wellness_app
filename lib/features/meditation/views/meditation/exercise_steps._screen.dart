@@ -147,7 +147,7 @@ class _MeditationExerciseStepsScreenState
                             ? Chewie(controller: _chewieController!)
                             : const Center(
                               child: CircularProgressIndicator(
-                                color: Colors.white,
+                                color: Color(0xFFF8F6FF),
                               ),
                             ),
                   ),

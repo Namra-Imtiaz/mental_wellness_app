@@ -28,10 +28,16 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
     try {
       final fetched = await ApiService.fetchSongs();
       setState(() {
-        results = fetched.where((song) =>
-          song.title.toLowerCase().contains(keyword.toLowerCase()) ||
-          song.artist.toLowerCase().contains(keyword.toLowerCase())
-        ).toList();
+        results =
+            fetched
+                .where(
+                  (song) =>
+                      song.title.toLowerCase().contains(
+                        keyword.toLowerCase(),
+                      ) ||
+                      song.artist.toLowerCase().contains(keyword.toLowerCase()),
+                )
+                .toList();
         isLoading = false;
       });
     } catch (e) {
@@ -43,39 +49,49 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Color(0xFF9D7CF4),
+      backgroundColor: Color(0xFFF8F6FF),
       appBar: AppBar(
-        backgroundColor:  Color(0xFF9D7CF4),
+        backgroundColor: Color(0xFFF8F6FF),
         elevation: 0,
-        title: Text('Results for "${widget.keyword}"', style: TextStyle(color: Colors.black)),
+        title: Text(
+          'Results for "${widget.keyword}"',
+          style: TextStyle(color: Colors.black),
+        ),
         iconTheme: IconThemeData(color: Color(0xFF9D7CF4)),
       ),
-      body: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : results.isEmpty
+      body:
+          isLoading
+              ? Center(child: CircularProgressIndicator())
+              : results.isEmpty
               ? Center(child: Text('No results found'))
               : ListView.builder(
-                  itemCount: results.length,
-                  itemBuilder: (context, index) {
-                    final song = results[index];
-                    return ListTile(
-                      leading: Image.network(song.imageUrl, width: 50, height: 50, fit: BoxFit.cover),
-                      title: Text(song.title),
-                      subtitle: Text(song.artist),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => NowPlayingPage(
-                              song: song,
-                              audioPlayer: AudioPlayer(),
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
+                itemCount: results.length,
+                itemBuilder: (context, index) {
+                  final song = results[index];
+                  return ListTile(
+                    leading: Image.network(
+                      song.imageUrl,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                    ),
+                    title: Text(song.title),
+                    subtitle: Text(song.artist),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (_) => NowPlayingPage(
+                                song: song,
+                                audioPlayer: AudioPlayer(),
+                              ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
     );
   }
 }

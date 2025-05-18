@@ -1,9 +1,7 @@
-
 import '../../../utils/constants/url_helper.dart';
 import '../models/meditation_category_model.dart';
 import '../models/meditation_exercise_model.dart';
 import '../models/meditation_step_model.dart';
-
 
 final focusMeditationCategory = MeditationCategoryModel(
   title: "Focus Meditation",
@@ -30,7 +28,7 @@ final focusMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('focus', 'Focused Attention Meditation'),
       videothumbnail:
           'assets/images/meditation/focus/video_thumbnails/Focused Attention Meditation.png',
-      duration: "0:00",
+      duration: "5:52",
       steps: [
         MeditationStepModel(
           title: "Find a Quiet Space",
@@ -76,7 +74,7 @@ final focusMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('focus', 'Candle Gazing Meditation'),
       videothumbnail:
           'assets/images/meditation/focus/video_thumbnails/Candle Gazing Meditation.png',
-      duration: "2:00",
+      duration: "4:59",
       steps: [
         MeditationStepModel(
           title: "Set Up Your Space",
@@ -122,7 +120,7 @@ final focusMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('focus', 'Counting Breaths Meditation'),
       videothumbnail:
           'assets/images/meditation/focus/video_thumbnails/Counting Breaths Meditation.png',
-      duration: "2:00",
+      duration: "5:34",
       steps: [
         MeditationStepModel(
           title: "Get Comfortable",
@@ -168,7 +166,7 @@ final focusMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('focus', 'Object Focus Meditation'),
       videothumbnail:
           'assets/images/meditation/focus/video_thumbnails/Object Focus Meditation.png',
-      duration: "2:00",
+      duration: "15:16",
       steps: [
         MeditationStepModel(
           title: "Choose an Object to Focus On",
@@ -214,7 +212,7 @@ final focusMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('focus', 'Sensory Awareness Meditation'),
       videothumbnail:
           'assets/images/meditation/focus/video_thumbnails/Sensory Awareness Meditation.png',
-      duration: "2:00",
+      duration: "5:49",
       steps: [
         MeditationStepModel(
           title: "Find a Quiet Spot",
@@ -260,7 +258,7 @@ final focusMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('focus', 'Dynamic Focus Meditation'),
       videothumbnail:
           'assets/images/meditation/focus/video_thumbnails/Dynamic Focus Meditation.png',
-      duration: "2:00",
+      duration: "5:05",
       steps: [
         MeditationStepModel(
           title: "Choose Your Movement",
@@ -306,7 +304,7 @@ final focusMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('focus', 'Mantra Repetition Meditation'),
       videothumbnail:
           'assets/images/meditation/focus/video_thumbnails/Mantra Repetition Meditation.png',
-      duration: "2:00",
+      duration: "31:45",
       steps: [
         MeditationStepModel(
           title: "Choose a Mantra",
@@ -351,7 +349,7 @@ final focusMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('focus', 'Visualization for Focus'),
       videothumbnail:
           'assets/images/meditation/focus/video_thumbnails/Visualization for Focus.png',
-      duration: "2:00",
+      duration: "10:07",
       steps: [
         MeditationStepModel(
           title: "Sit Comfortably",
@@ -393,7 +391,7 @@ final focusMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('focus', 'Eye Focus Meditation'),
       videothumbnail:
           'assets/images/meditation/focus/video_thumbnails/Eye Focus Meditation.png',
-      duration: "2:00",
+      duration: "9:55",
       steps: [
         MeditationStepModel(
           title: "Sit Comfortably",
@@ -433,7 +431,7 @@ final focusMeditationCategory = MeditationCategoryModel(
       videoUrl: generateExerciseUrl('focus', 'Breath Retention Meditation'),
       videothumbnail:
           'assets/images/meditation/focus/video_thumbnails/Breath Retention Meditation.png',
-      duration: "2:00",
+      duration: "7:09",
       steps: [
         MeditationStepModel(
           title: "Find a Quiet Space",
@@ -474,7 +472,3 @@ final focusMeditationCategory = MeditationCategoryModel(
     ),
   ],
 );
-
-
-
-
