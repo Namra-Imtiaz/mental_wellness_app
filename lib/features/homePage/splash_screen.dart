@@ -128,7 +128,7 @@ class _InitialBrandingSplashState extends State<InitialBrandingSplash> with Sing
                         ).createShader(bounds);
                       },
                       child: Text(
-                        "Mental Wellness",
+                        "Zen-O",
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,

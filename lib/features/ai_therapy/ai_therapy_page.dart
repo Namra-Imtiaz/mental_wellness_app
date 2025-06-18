@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'chat_service.dart';
 
 class AITherapyPage extends StatefulWidget {
   @override
@@ -15,6 +16,9 @@ class _AITherapyPageState extends State<AITherapyPage> {
   final Color primaryPurple = Color(0xFF9D7CF4);
   final Color darkPurple = Color(0xFF7C60D5);
   final Color lightPurple = Color(0xFFEDE7FF);
+  
+  // Create instance of chat service
+  final ChatService _chatService = ChatService();
 
   @override
   void dispose() {
@@ -23,12 +27,14 @@ class _AITherapyPageState extends State<AITherapyPage> {
     super.dispose();
   }
 
-  void _sendMessage() {
+  void _sendMessage() async {
     if (_messageController.text.trim().isEmpty) return;
+    
+    final userMessage = _messageController.text;
 
     setState(() {
       // Add user message
-      _messages.add({'text': _messageController.text, 'isUser': true});
+      _messages.add({'text': userMessage, 'isUser': true});
 
       // Show typing indicator
       _isTyping = true;
@@ -40,20 +46,42 @@ class _AITherapyPageState extends State<AITherapyPage> {
     // Scroll to bottom
     _scrollToBottom();
 
-    // Simulate AI response after a delay
-    Future.delayed(Duration(seconds: 1), () {
+    try {
+      // Send message to backend
+      final response = await _chatService.sendMessage(userMessage);
+      
       setState(() {
         _isTyping = false;
-        // Add AI response
+        
+        if (response['success']) {
+          // Add AI response from backend
+          _messages.add({
+            'text': response['data'],
+            'isUser': false,
+          });
+        } else {
+          // Show error message
+          _messages.add({
+            'text': response['error'],
+            'isUser': false,
+            'isError': true,
+          });
+        }
+      });
+    } catch (e) {
+      setState(() {
+        _isTyping = false;
+        // Add error as a system message
         _messages.add({
-          'text': _getAIResponse(_messages.last['text']),
+          'text': "Something went wrong. Please try again later.",
           'isUser': false,
+          'isError': true,
         });
       });
+    }
 
-      // Scroll to bottom again after response
-      _scrollToBottom();
-    });
+    // Scroll to bottom again after response
+    _scrollToBottom();
   }
 
   void _scrollToBottom() {
@@ -66,27 +94,6 @@ class _AITherapyPageState extends State<AITherapyPage> {
         );
       }
     });
-  }
-
-  // Simple responses based on user input
-  String _getAIResponse(String userMessage) {
-    userMessage = userMessage.toLowerCase();
-
-    if (userMessage.contains('hello') || userMessage.contains('hi')) {
-      return "Hello! I'm your AI therapy assistant. How are you feeling today?";
-    } else if (userMessage.contains('sad') || userMessage.contains('unhappy')) {
-      return "I'm sorry to hear you're feeling down. Would you like to talk about what's making you feel this way?";
-    } else if (userMessage.contains('anxious') ||
-        userMessage.contains('anxiety')) {
-      return "Anxiety can be challenging. Let's take a deep breath together. Can you tell me more about what's causing your anxiety?";
-    } else if (userMessage.contains('stress') ||
-        userMessage.contains('stressed')) {
-      return "Stress affects us all. What specifically is causing you stress right now?";
-    } else if (userMessage.contains('thank')) {
-      return "You're welcome! I'm here to support you whenever you need someone to talk to.";
-    } else {
-      return "I appreciate you sharing that with me. How does that make you feel?";
-    }
   }
 
   @override
@@ -112,7 +119,6 @@ class _AITherapyPageState extends State<AITherapyPage> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      // Add resizeToAvoidBottomInset to prevent overflow when keyboard appears
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Column(
@@ -146,6 +152,7 @@ class _AITherapyPageState extends State<AITherapyPage> {
                             return _buildMessageBubble(
                               text: message['text'],
                               isUser: message['isUser'],
+                              isError: message['isError'] ?? false,
                             );
                           },
                         ),
@@ -220,7 +227,6 @@ class _AITherapyPageState extends State<AITherapyPage> {
   Widget _buildWelcomeMessage() {
     return Center(
       child: SingleChildScrollView(
-        // Wrap in SingleChildScrollView to prevent overflow
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -259,25 +265,36 @@ class _AITherapyPageState extends State<AITherapyPage> {
               ),
             ),
             SizedBox(height: 32),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              decoration: BoxDecoration(
-                color: primaryPurple,
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: [
-                  BoxShadow(
-                    color: primaryPurple.withOpacity(0.3),
-                    blurRadius: 12,
-                    offset: Offset(0, 5),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  // Add initial welcome message from bot
+                  _messages.add({
+                    'text': "Hello! I'm your AI therapy assistant. How are you feeling today?",
+                    'isUser': false,
+                  });
+                });
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                  color: primaryPurple,
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: [
+                    BoxShadow(
+                      color: primaryPurple.withOpacity(0.3),
+                      blurRadius: 12,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Text(
+                  "Start Chatting",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
                   ),
-                ],
-              ),
-              child: Text(
-                "Start Chatting",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
                 ),
               ),
             ),
@@ -287,7 +304,7 @@ class _AITherapyPageState extends State<AITherapyPage> {
     );
   }
 
-  Widget _buildMessageBubble({required String text, required bool isUser}) {
+  Widget _buildMessageBubble({required String text, required bool isUser, bool isError = false}) {
     return Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
@@ -301,7 +318,11 @@ class _AITherapyPageState extends State<AITherapyPage> {
         ),
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isUser ? primaryPurple : Colors.white,
+          color: isUser 
+              ? primaryPurple 
+              : isError 
+                  ? Color(0xFFFFF0F0) // Light red for error messages
+                  : Colors.white,
           borderRadius: BorderRadius.circular(20).copyWith(
             bottomRight: isUser ? Radius.circular(5) : Radius.circular(20),
             bottomLeft: isUser ? Radius.circular(20) : Radius.circular(5),
@@ -317,7 +338,11 @@ class _AITherapyPageState extends State<AITherapyPage> {
         child: Text(
           text,
           style: TextStyle(
-            color: isUser ? Colors.white : Colors.black87,
+            color: isUser 
+                ? Colors.white 
+                : isError 
+                    ? Colors.red.shade700 // Dark red text for error messages
+                    : Colors.black87,
             fontSize: 16,
           ),
         ),

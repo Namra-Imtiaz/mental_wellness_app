@@ -82,7 +82,7 @@ class _MentalWellnessAppState extends State<MentalWellnessApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Mental Wellness',
+      title: 'Zen-O',
       theme: ThemeData(
         fontFamily: 'Poppins',
         scaffoldBackgroundColor: const Color(0xFFF8F6FF),
