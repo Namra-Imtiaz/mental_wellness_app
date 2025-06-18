@@ -255,7 +255,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     SizedBox(height: 30),
                     Center(
                       child: Text(
-                        'Mental Wellness',
+                        'Zen-O',
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,

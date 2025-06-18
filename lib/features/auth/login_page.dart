@@ -275,7 +275,7 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(height: 40),
                     Center(
                       child: Text(
-                        'Mental Wellness',
+                        'Zen-O',
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
